@@ -1,6 +1,8 @@
 
 # Welcome to my Group Project!
 
+![mediaan image](https://www.partnersfontysict.nl/site/assets/files/2740/mediaan.-logo_medium.jpg)
+
 <p>
   This folder contains:
   <ul>
