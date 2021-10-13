@@ -1,2 +1,2 @@
 
-# Welcome Individual Project!
+# Welcome to my Individual Project!
