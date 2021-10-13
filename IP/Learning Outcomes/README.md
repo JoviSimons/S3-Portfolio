@@ -21,4 +21,6 @@
 
 ## Software Quality
 ## CI/CD
+<img width="1080" alt="Bitbucket pipeline" src="https://user-images.githubusercontent.com/33750291/137206448-23be4f60-1635-486e-ac1d-bc0ba8be1c1e.png">
+
 ## Professional
