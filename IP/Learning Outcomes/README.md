@@ -16,10 +16,10 @@
 3. [CartService](#CartService)
 
 ### MyDrugs Front-end
-Repository: [MyDrugs](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
+Repository: [MyDrugs](https://bitbucket.org/studentjovi-admin/mydrugs/src)
 
 ### ProductService
-Repository: [ProductService](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
+Repository: [ProductService](https://bitbucket.org/studentjovi-admin/productservice/src)
 
 ### CartService
 Repository: [CartService](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
