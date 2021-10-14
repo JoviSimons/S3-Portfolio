@@ -16,8 +16,14 @@
 3. [CartService](#CartService)
 
 ### MyDrugs Front-end
+Repository: [MyDrugs](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
+
 ### ProductService
+Repository: [ProductService](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
+
 ### CartService
+Repository: [CartService](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
+
 
 ## Software Quality
 ## CI/CD
