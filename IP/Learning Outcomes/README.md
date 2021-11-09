@@ -26,6 +26,76 @@ Repository: [CartService](https://bitbucket.org/studentjovi-admin/mydrugs/src/ma
 
 
 ## Software Quality
+```kotlin
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate) {
+
+    lateinit var getCategoryUrl: String
+    lateinit var categoryUrl: String
+    lateinit var headers: HttpHeaders
+    lateinit var categoryPostObject: JSONObject
+    lateinit var categoryPutObject: JSONObject
+    var categoryId: Int? = null
+
+    @BeforeAll
+    fun setup () {
+        getCategoryUrl = "/MyDrugs/categories/1"
+        categoryUrl = "/MyDrugs/categories/"
+        headers = HttpHeaders()
+        headers.contentType = MediaType.APPLICATION_JSON
+
+        categoryPutObject = JSONObject()
+        categoryPutObject["name"] = "Doe"
+        categoryPutObject["description"] = "John"
+
+        categoryPostObject = JSONObject()
+        categoryPostObject["name"] = "John"
+        categoryPostObject["description"] = "Doe"
+    }
+
+    @Test
+    fun testCategoryControllerGetById() {
+        val result = testRestTemplate.getForEntity(getCategoryUrl, Category::class.java)
+        assertNotNull(result)
+        assertEquals(result.statusCode, HttpStatus.OK)
+    }
+
+    @Test
+    fun testCategoryControllerPost() {
+
+        val request = HttpEntity<String>(categoryPostObject.toString(), headers)
+
+        val category: Category = testRestTemplate.postForObject(categoryUrl, request, Category::class.java)
+
+        assertNotNull(category)
+        assertNotNull(category.id)
+        categoryId = category.id
+        assertNotNull(category.name)
+        assertNotNull(category.description)
+        assertEquals(categoryPostObject["name"],category.name)
+        assertEquals(categoryPostObject["description"],category.description)
+    }
+
+    @Test
+    fun testCategoryControllerPut() {
+
+        val request = HttpEntity<String>(categoryPutObject.toString(), headers)
+
+        val category = testRestTemplate.put(categoryUrl+categoryId.toString(), request)
+
+        assertNotNull(category)
+    }
+
+    @Test
+    fun testCategoryControllerDelete() {
+            testRestTemplate.delete(categoryUrl+categoryId.toString())
+    }
+}
+```
+
+<img width="1181" alt="Schermafbeelding 2021-11-09 om 23 49 50" src="https://user-images.githubusercontent.com/33750291/141018085-bceadb31-1fc2-44ab-af74-0e8b0b996291.png">
+
+
 ## CI/CD
 
 Below you can see my first yaml file that uses sonarcloud too check the quality of my code.
