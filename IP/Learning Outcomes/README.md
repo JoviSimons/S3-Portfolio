@@ -60,7 +60,7 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
         assertEquals(result.statusCode, HttpStatus.OK)
     }
 
-    @Test
+        @Test
     fun testCategoryControllerPost() {
 
         val request = HttpEntity<String>(categoryPostObject.toString(), headers)
@@ -74,16 +74,35 @@ class CategoryIntegrationTest(@Autowired val testRestTemplate: TestRestTemplate)
         assertNotNull(category.description)
         assertEquals(categoryPostObject["name"],category.name)
         assertEquals(categoryPostObject["description"],category.description)
+
+        testRestTemplate.delete(categoryUrl+categoryId.toString())
+
     }
 
     @Test
     fun testCategoryControllerPut() {
 
-        val request = HttpEntity<String>(categoryPutObject.toString(), headers)
+        var request = HttpEntity<String>(categoryPostObject.toString(), headers)
 
-        val category = testRestTemplate.put(categoryUrl+categoryId.toString(), request)
+        val postCategory: Category = testRestTemplate.postForObject(categoryUrl, request, Category::class.java)
 
-        assertNotNull(category)
+        assertNotNull(postCategory)
+        assertNotNull(postCategory.id)
+        categoryId = postCategory.id
+
+         request = HttpEntity<String>(categoryPutObject.toString(), headers)
+
+        val result = testRestTemplate.put(categoryUrl+categoryId.toString(), request)
+
+        assertNotNull(result)
+
+
+        val category: Category = testRestTemplate.getForObject(getCategoryUrl+categoryId.toString(), Category::class.java)
+
+        assertEquals(categoryPutObject["name"],category.name)
+        assertEquals(categoryPutObject["description"],category.description)
+
+        testRestTemplate.delete(categoryUrl+categoryId.toString())
     }
 
     @Test
