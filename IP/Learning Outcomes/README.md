@@ -2,6 +2,7 @@
 # Welcome to my Learning Outcomes!
 
 ## Table of Contents
+
 1. [Web Application](#Web-Application)
 2. [Software Quality](#Software-Quality)
 3. [CI/CD](#CI/CD)
@@ -11,6 +12,7 @@
 ## Web Application
 
 ### Applications
+
 1. [MyDrugs Front-end](#MyDrugs-Front-end)
 2. [ProductService](#ProductService)
 3. [CartService](#CartService)
@@ -27,9 +29,32 @@ Repository: [CartService](https://bitbucket.org/studentjovi-admin/mydrugs/src/ma
 
 ## Software Quality
 
-For this learning outcome I wrote and automated tests for my [ProductService](https://bitbucket.org/studentjovi-admin/productservice/src). I have used Unit and Integration tests for this.
+For this learning outcome I wrote and automated tests for my [ProductService](https://bitbucket.org/studentjovi-admin/productservice/src). I have used the in-memory H2 Database as my test database to test my Unit and Integration tests.
 
-### 1. Unit Testing
+### 1. H2 Database
+
+H2 Database is an in-memery database that I use for testing purposes. It's configured so that before I run my tests it will create a database based of my Entities in the service. To do that I have an application.properties file in my test package with this code:
+
+```
+spring.datasource.url=jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+spring.datasource.username=sa
+spring.datasource.password=sa
+spring.datasource.driver-class-name=org.h2.Driver
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true
+spring.h2.console.enabled=true
+spring.jpa.defer-datasource-initialization=true
+```
+
+To populate the in-memory database with test values I have made a data.sql file in my test package that will be executed after the database is created:
+
+```sql
+INSERT INTO Category (id, name, description) VALUES (1, 'Cat', 'description'), (2, 'Category', 'description');
+```
+Sources:
+- <a href="https://www.baeldung.com/spring-boot-h2-database">Baeldung</a>
+
+### 2. Unit Testing
 
 Unit Testing is done during the development (coding phase) of an application by the developers. Unit Tests isolate a section of code and verify its correctness. A unit may be an individual function, method, procedure, module, or object. That is why Unit tests are so important, they test an individual component of your application and run fast.
 
@@ -45,7 +70,7 @@ Sources:
 - <a href="https://www.youtube.com/watch?v=Geq60OVyBPg&t=2283s">AmigosCode</a>
 
 
-### 2. Integration Testing
+### 3. Integration Testing
 
 Integration tests verify that different modules or services used by your application work well together.
 I made 2 types of Integration. The MockMvc is used for Server side testing and the testRestTemplate is used for Client side testing. I chose to do this because of learning purposes.
@@ -83,16 +108,41 @@ The pictures below shows a yaml file that builds, tests and deploys my ProductSe
 
 ## Professional
 
-### 1. Jira and Bitbucket
+### 1. Git Flow
+
+In my project I use the git flow in my source control. The workflow is great for a release-based software workflow.
+
+Branches:
+
+- A main branch is created
+- A develop branch is created from main
+- Feature branches are created from develop
+- When a feature is complete it is merged into the develop branch using Pull Request
+- Closing the used feature branch
+- When the development branch is done it is merged into main using Pull Request
+
+
+<img width="428" alt="GitFlow" src="https://miro.medium.com/max/823/1*uUpzVOpdFw5V-tJ_YvgFmA.png">
+
+The reason why I chose this workflow because it makes working with branches much easier and more clear too see what is going on. It's also a common flow used on the workfloor.
+
+### 2. Jira and Bitbucket
+
+I Use Jira for my KanBan board and Bitbucket as my online SourceControl. The Reason why I chose this is because Jira and Bitbucket are from the same organization called Atlassian. This means that there is a great integration between these two web applications. 
 
 | Jira | Bitbucket|
 | --- | ----------- |
-| <img width="1377" alt="Schermafbeelding 2021-11-24 om 20 13 54" src="https://user-images.githubusercontent.com/33750291/143300214-2c2a2062-a4e8-44d3-ac16-aad1ab095a0c.png"> | <img width="1211" alt="Schermafbeelding 2021-11-24 om 20 12 57" src="https://user-images.githubusercontent.com/33750291/143300222-1744b2c4-ab27-4af5-8287-cf96eea44503.png"> |
+| <img width="1211" alt="Jira board" src="https://user-images.githubusercontent.com/33750291/143300222-1744b2c4-ab27-4af5-8287-cf96eea44503.png"> | <img width="1377" alt="Bitbucket board" src="https://user-images.githubusercontent.com/33750291/143300214-2c2a2062-a4e8-44d3-ac16-aad1ab095a0c.png"> |
+
+As seen in the pictures above all the issues made in Jira(left picture) or Bitbucket(right picture) are shared with each other.
+
+In Jira when clicked on a user story, bug, feature etc. You can see the the branch it's on if it has a branch attached to it, the pull request if made one and the pipeline results linked to it. As seen in the picture below.
+<img width="1282" alt="Jira ticket" src="https://user-images.githubusercontent.com/33750291/143307587-6140b944-6627-4b41-a2e7-8ca92530b27b.png">
+
+If you want to merge development into main you cannot to that without a Pull Request. You cannot merge if the build failes or has no more than one succesfull builds also it must be reviewed by one person. If all those checks are marked you can merge the dev branch into main as seen below.
+<img width="1136" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143299908-5f15c2f0-0597-4a57-b845-90c2e33557e3.png">
 
 
 
 
-<img width="428" alt="Schermafbeelding 2021-11-19 om 00 16 40" src="https://user-images.githubusercontent.com/33750291/143299920-8734abf2-c897-4654-a26e-40a39c7b8da0.png">
-
-<img width="1136" alt="Schermafbeelding 2021-11-18 om 23 05 11" src="https://user-images.githubusercontent.com/33750291/143299908-5f15c2f0-0597-4a57-b845-90c2e33557e3.png">
 
