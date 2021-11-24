@@ -23,6 +23,11 @@ Repository: [MyDrugs](https://bitbucket.org/studentjovi-admin/mydrugs/src)
 ### ProductService
 Repository: [ProductService](https://bitbucket.org/studentjovi-admin/productservice/src)
 
+For Documentation I used Swagger UI.
+
+![image](https://user-images.githubusercontent.com/33750291/143325286-b120e303-282b-4bdb-be44-1b67e4721fd5.png)
+
+
 ### CartService
 Repository: [CartService](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
 
