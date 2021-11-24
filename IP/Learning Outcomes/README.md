@@ -140,8 +140,7 @@ In Jira when clicked on a user story, bug, feature etc. You can see the the bran
 <img width="1282" alt="Jira ticket" src="https://user-images.githubusercontent.com/33750291/143307587-6140b944-6627-4b41-a2e7-8ca92530b27b.png">
 
 If you want to merge development into main you cannot to that without a Pull Request. You cannot merge if the build failes or has no more than one succesfull builds also it must be reviewed by one person. If all those checks are marked you can merge the dev branch into main as seen below.
-<img width="1136" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143299908-5f15c2f0-0597-4a57-b845-90c2e33557e3.png">
-
+<img width="1136" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143310714-2a1f96ce-d7b3-49dd-b65a-e9fb6b53f8f2.png">
 
 
 
