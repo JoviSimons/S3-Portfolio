@@ -80,13 +80,15 @@ Sources:
 Integration tests verify that different modules or services used by your application work well together.
 I made 2 types of Integration. The MockMvc is used for Server side testing and the testRestTemplate is used for Client side testing. I chose to do this because of learning purposes.
 
+Below I have two different tests but they test the same functionality. They test the PUT request and check on duplicate entry. 
+
 | MockMvc tests | testRestTemplate tests |
 | --- | ----------- |
 | <img width="819" alt="MockMvc Test 1" src="https://user-images.githubusercontent.com/33750291/143293422-68e46bf9-9020-471f-a651-73f989a84304.png">
 <img width="903" alt="MockMvc Test 2" src="https://user-images.githubusercontent.com/33750291/143293427-55d356cd-595f-4f32-9a13-67b872614448.png"> | <img width="969" alt="testRestTemplate test" src="https://user-images.githubusercontent.com/33750291/143293471-f2445164-60e5-4aee-82e1-c0f2e246c0ba.png"> |
 | <img width="482" alt="MockMvc succesful tests" src="https://user-images.githubusercontent.com/33750291/143291328-67233d17-55c5-47d4-a896-37b0852475f9.png">  | <img width="371" alt="testRestTemplate succesful tests" src="https://user-images.githubusercontent.com/33750291/143291323-85337a85-ac11-41c7-8ce6-780ff3f59cef.png"> |
 
-They both test the same functionalities. They test the GET, POST, PUT and DELETE with their exceptions.
+Both files test the same functionalities. They test the GET, POST, PUT and DELETE with their exceptions.
 I personally think the MockMvc tests are better but the testRestTemplates are easier to understand and use less code. Another difference is the code, the code from MockMvc looks cleaner thus easier to read.
 
 Sources:
