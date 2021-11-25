@@ -23,9 +23,9 @@ Repository: [MyDrugs](https://bitbucket.org/studentjovi-admin/mydrugs/src)
 ### ProductService
 Repository: [ProductService](https://bitbucket.org/studentjovi-admin/productservice/src)
 
-For Documentation I used Swagger UI.
+For Documentation I use Swagger UI.
 
-![image](https://user-images.githubusercontent.com/33750291/143325286-b120e303-282b-4bdb-be44-1b67e4721fd5.png)
+<img width="700" alt="ProductSwagger" src="https://user-images.githubusercontent.com/33750291/143325286-b120e303-282b-4bdb-be44-1b67e4721fd5.png"> 
 
 
 ### CartService
@@ -40,7 +40,7 @@ For this learning outcome I wrote and automated tests for my [ProductService](ht
 
 H2 Database is an in-memery database that I use for testing purposes. It's configured so that before I run my tests it will create a database based of my Entities in the service. To do that I have an application.properties file in my test package with this code:
 
-```
+```properties
 spring.datasource.url=jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
 spring.datasource.username=sa
 spring.datasource.password=sa
@@ -93,6 +93,25 @@ Sources:
 - <a href="https://www.baeldung.com/spring-resttemplate-post-json">Baeldung</a> (testRestTemplate)
 - <a href="https://www.youtube.com/watch?v=TJcshrJOnsE&list=PL6gx4Cwl9DGDPsneZWaOFg0H2wsundyGrMockMvc">thenewboston</a> (MockMvc)
 
+### 4. Automated testing
+
+```yaml
+image: maven:3.8.3-jdk-11
+
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Build and Test
+            script:
+              - mvn test
+```
+
+### 5. Code Review
+
+<img width="550" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143310714-2a1f96ce-d7b3-49dd-b65a-e9fb6b53f8f2.png">
+
+
 ## CI/CD
 
 Below you can see my first yaml file that uses sonarcloud too check the quality of my code.
@@ -100,6 +119,37 @@ Below you can see my first yaml file that uses sonarcloud too check the quality 
 <img width="550" alt="first yaml file" src="https://user-images.githubusercontent.com/33750291/137206448-23be4f60-1635-486e-ac1d-bc0ba8be1c1e.png">
 
 The pictures below shows a yaml file that builds, tests and deploys my ProductService.
+
+```yaml
+branches:
+    master:
+      - step:
+          name: Build and Test
+          script:
+            - mvn clean install
+            - IMAGE_NAME=product-service-docker
+            - docker build . --file Dockerfile --tag ${IMAGE_NAME}
+            - docker save ${IMAGE_NAME} --output "${IMAGE_NAME}.tar"
+          services:
+            - docker
+          caches:
+            - docker
+          artifacts:
+            - "*.tar"
+      - step:
+          name: Deploy to Production
+          deployment: Production
+          script:
+            - echo ${DOCKERHUB_PASSWORD} | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+            - IMAGE_NAME=product-service-docker
+            - docker load --input "${IMAGE_NAME}.tar"
+            - VERSION="prod-0.1.${BITBUCKET_BUILD_NUMBER}"
+            - IMAGE=${DOCKERHUB_USERNAME}/${IMAGE_NAME}
+            - docker tag "${IMAGE_NAME}" "${IMAGE}:latest"
+            - docker push "${IMAGE}:latest"
+          services:
+            - docker
+```
 
 <p>
 <img width="400" alt="second yaml file" src="https://user-images.githubusercontent.com/33750291/140995446-68fda41e-74c4-4466-9f9f-c43abe11d37e.png">
@@ -142,10 +192,18 @@ I Use Jira for my KanBan board and Bitbucket as my online SourceControl. The Rea
 As seen in the pictures above all the issues made in Jira(left picture) or Bitbucket(right picture) are shared with each other.
 
 In Jira when clicked on a user story, bug, feature etc. You can see the the branch it's on if it has a branch attached to it, the pull request if made one and the pipeline results linked to it. As seen in the picture below.
-<img width="1282" alt="Jira ticket" src="https://user-images.githubusercontent.com/33750291/143307587-6140b944-6627-4b41-a2e7-8ca92530b27b.png">
 
-If you want to merge development into main you cannot to that without a Pull Request. You cannot merge if the build failes or has no more than one succesfull builds also it must be reviewed by one person. If all those checks are marked you can merge the dev branch into main as seen below.
-<img width="1136" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143310714-2a1f96ce-d7b3-49dd-b65a-e9fb6b53f8f2.png">
+<img width="550" alt="Jira ticket" src="https://user-images.githubusercontent.com/33750291/143307587-6140b944-6627-4b41-a2e7-8ca92530b27b.png">
+
+If you want to merge development into main you cannot to that without a Pull Request. 
+There are a couple merge checks before merging in main:
+- No failing builds
+- Has one or more succesfull builds
+- It must be reviewed by one person. 
+
+If all those checks are marked you can merge the dev branch into main as seen below.
+
+<img width="550" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143310714-2a1f96ce-d7b3-49dd-b65a-e9fb6b53f8f2.png">
 
 
 
