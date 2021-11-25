@@ -95,6 +95,8 @@ Sources:
 
 ### 4. Automated testing
 
+Below you can see the script that runs by default on every push and tests. So with every little change in the code that I push it will be tested to make sure nothing breaks when adding new features.
+
 ```yaml
 image: maven:3.8.3-jdk-11
 
@@ -107,7 +109,23 @@ pipelines:
               - mvn test
 ```
 
-### 5. Code Review
+Below is the result of the yaml. You can see that 22 tests passed! Ready for pull request.
+
+<img width="400" alt="second yaml file" src="https://user-images.githubusercontent.com/33750291/143413735-ca638e8b-a364-40d4-bef6-fddd1a9cd00d.png">
+
+Sources:
+- <a href="https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/"> Pipeline docs</a>
+
+### 5. Merge checks
+
+
+If you want to merge development into main you cannot to that without a Pull Request. 
+There are a couple merge checks before merging in main:
+- No failing builds
+- Has one or more succesfull builds
+- It must be reviewed by one person. 
+
+If all those checks are marked you can merge the dev branch into main as seen below.
 
 <img width="550" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143310714-2a1f96ce-d7b3-49dd-b65a-e9fb6b53f8f2.png">
 
@@ -151,15 +169,18 @@ branches:
             - docker
 ```
 
-<p>
-<img width="400" alt="second yaml file" src="https://user-images.githubusercontent.com/33750291/140995446-68fda41e-74c4-4466-9f9f-c43abe11d37e.png">
-<img width="450" alt="yaml file result" src="https://user-images.githubusercontent.com/33750291/140995456-948ffca8-ff36-45a4-86ba-9c07f8c36258.png">
- </p>
+| Bitbucket | Dockerhub|
+| --- | ----------- |
+| <img width="450" alt="dockerhub result" src="https://user-images.githubusercontent.com/33750291/140995456-948ffca8-ff36-45a4-86ba-9c07f8c36258.png"> |<img width="450" alt="bitbucket result" src="https://user-images.githubusercontent.com/33750291/143414091-472c49d2-4f6e-48db-9b6e-a6152ceffdc8.png"> |
  
- Left picture: in the left picture you can see the yaml file. By default on every push it builds and test the service. When pushing to master branch it will build test and deploy the service to my dockerhub online.
+ Left picture: in the left picture you can see result of yaml file in bitbucket. By default on every push it builds and test the service. When pushing to master branch it will build test and deploy the service to my dockerhub online.
  
- Right picture: in the right picture you can see the result of my yaml file. As seen in the picture it succesfully builds, tests and deploys the service.
+ Right picture: in the right picture you can see the result of the yaml that is pushed to dockerhub and online.
  
+
+Sources:
+- <a href="https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/"> Pipeline docs</a>
+
 
 ## Professional
 
@@ -180,6 +201,9 @@ Branches:
 <img width="428" alt="GitFlow" src="https://miro.medium.com/max/823/1*uUpzVOpdFw5V-tJ_YvgFmA.png">
 
 The reason why I chose this workflow because it makes working with branches much easier and more clear too see what is going on. It's also a common flow used on the workfloor.
+
+Sources:
+- <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow"> Bitbucket docs</a>
 
 ### 2. Jira and Bitbucket
 
