@@ -217,19 +217,14 @@ I Use Jira for my KanBan board and Bitbucket as my online SourceControl. The Rea
 
 As seen in the pictures above all the issues made in Jira(left picture) or Bitbucket(right picture) are shared with each other.
 
+
+
+![image](https://user-images.githubusercontent.com/33750291/143448146-a330701b-0e09-4478-b130-1c5ad7d017d5.png)
+
 In Jira when clicked on a user story, bug, feature etc. You can see the the branch it's on if it has a branch attached to it, the pull request if made one and the pipeline results linked to it. As seen in the picture below.
 
 <img width="550" alt="Jira ticket" src="https://user-images.githubusercontent.com/33750291/143307587-6140b944-6627-4b41-a2e7-8ca92530b27b.png">
 
-If you want to merge development into main you cannot to that without a Pull Request. 
-There are a couple merge checks before merging in main:
-- No failing builds
-- Has one or more succesfull builds
-- It must be reviewed by one person. 
-
-If all those checks are marked you can merge the dev branch into main as seen below.
-
-<img width="550" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143310714-2a1f96ce-d7b3-49dd-b65a-e9fb6b53f8f2.png">
 
 
 
