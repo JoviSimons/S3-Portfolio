@@ -118,7 +118,13 @@ Below is the result of the yaml. You can see that 22 tests passed! Ready for pul
 Sources:
 - <a href="https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/"> Pipeline docs</a>
 
-### 5. Merge checks
+### 5. SonarCloud
+|BitBucket|SonarCloud|
+|-|-|
+|<img width="858" alt="" src="https://user-images.githubusercontent.com/33750291/143471014-8e3e3069-3ec8-4857-9ec1-449c7412026b.png">|<img width="1153" alt="Schermafbeelding 2021-11-25 om 16 47 25" src="https://user-images.githubusercontent.com/33750291/143471023-aaa6b5b9-ef8a-4852-8bb0-8c7d3d525cc1.png">|
+
+
+### 6. Merge checks
 
 
 If you want to merge development into main you cannot to that without a Pull Request. 
@@ -129,8 +135,7 @@ There are a couple merge checks before merging in main:
 
 If all those checks are marked you can merge the dev branch into main as seen below.
 
-<img width="550" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143310714-2a1f96ce-d7b3-49dd-b65a-e9fb6b53f8f2.png">
-
+<img width="550" alt="Pull Request" src="https://user-images.githubusercontent.com/33750291/143471167-bc3136f5-cbca-47ea-bcb0-2a3cb5ded038.png">
 
 ## CI/CD
 
