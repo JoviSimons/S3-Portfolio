@@ -20,15 +20,35 @@
 ### MyDrugs Front-end
 Repository: [MyDrugs](https://bitbucket.org/studentjovi-admin/mydrugs/src)
 
-### ProductService
+#### Single page
+
+In front-end application we can call the API services as seen in the picture below. We get all the products from our Product-Service.
+
+<img width="700" alt="Front-end products" src="https://user-images.githubusercontent.com/33750291/144400269-ce55435c-b449-428b-9b73-f5a26cdb1bd4.png"> 
+
+
+#### Auth0
+
+For the Aunthentication we use an external service called Auth0. You don't have to make your own authentication system that saves a lot of time. Below you see the login/registration page provided by Auth0.
+
+<img width="200" alt="Auth0 login" src="https://user-images.githubusercontent.com/33750291/144401915-de9113f7-0083-431d-a631-7838388a9470.png"> 
+
+
+
+### MyDrugs ProductService
+
 Repository: [ProductService](https://bitbucket.org/studentjovi-admin/productservice/src)
 
-For Documentation I use Swagger UI.
+<img width="700" alt="ProductService" src="https://user-images.githubusercontent.com/33750291/144393702-53fcdc8f-7f2e-4482-85b4-1427a86039be.png"> 
 
 <img width="700" alt="ProductSwagger" src="https://user-images.githubusercontent.com/33750291/143325286-b120e303-282b-4bdb-be44-1b67e4721fd5.png"> 
 
+For Documentation I use Swagger UI as seen in the picture above. I have customized swagger so you can see my details instead of the details that are there per default.
+
+
 
 ### CartService
+
 Repository: [CartService](https://bitbucket.org/studentjovi-admin/mydrugs/src/master/)
 
 
