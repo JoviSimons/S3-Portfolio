@@ -18,6 +18,7 @@
 3. [CartService](#CartService)
 
 ### MyDrugs Front-end
+
 Repository: [MyDrugs](https://bitbucket.org/studentjovi-admin/mydrugs/src)
 
 #### Single page
@@ -37,17 +38,20 @@ For the Aunthentication we use an external service called Auth0. You don't have 
 
 When you are logged in you can access your profile page and the possiblity to log-out as seen below.
 
-<img width="700" alt="Auth0 profile" src="https://user-images.githubusercontent.com/33750291/144405393-ea6a42d7-4e03-44e9-9c01-1e61645ae8ae.png"> 
+<img width="700" alt="Auth0 profile" src="https://user-images.githubusercontent.com/33750291/144405393-ea6a42d7-4e03-44e9-9c01-1e61645ae8ae.png">
+
 
 ### MyDrugs ProductService
 
 Repository: [ProductService](https://bitbucket.org/studentjovi-admin/productservice/src)
 
+The Product Service provides all the product for MyDrugs categorized.
+
 <img width="700" alt="ProductService" src="https://user-images.githubusercontent.com/33750291/144393702-53fcdc8f-7f2e-4482-85b4-1427a86039be.png"> 
 
 <img width="700" alt="ProductSwagger" src="https://user-images.githubusercontent.com/33750291/143325286-b120e303-282b-4bdb-be44-1b67e4721fd5.png"> 
 
-For Documentation I use Swagger UI as seen in the picture above. I have customized swagger so you can see my details instead of the details that are there per default.
+For the documentation I use Swagger UI as seen in the picture above. I have customized swagger so you can see my details instead of the details that are there per default.
 
 
 
