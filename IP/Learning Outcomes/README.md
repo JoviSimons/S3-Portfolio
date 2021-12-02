@@ -29,11 +29,15 @@ In front-end application we can call the API services as seen in the picture bel
 
 #### Auth0
 
-For the Aunthentication we use an external service called Auth0. You don't have to make your own authentication system that saves a lot of time. Below you see the login/registration page provided by Auth0.
+For the Aunthentication we use an external service called Auth0. You don't have to make your own authentication system that saves a lot of time. Below you see the button to login when clicked you go to the login/registration page provided by Auth0.
 
-<img width="200" alt="Auth0 login" src="https://user-images.githubusercontent.com/33750291/144401915-de9113f7-0083-431d-a631-7838388a9470.png"> 
+|||
+|-|-|
+|![login](https://user-images.githubusercontent.com/33750291/144405745-9fd1b457-7010-469b-8628-f5f9a37e0f99.png)|<img width="200" alt="Auth0 login" src="https://user-images.githubusercontent.com/33750291/144401915-de9113f7-0083-431d-a631-7838388a9470.png"> |
 
+When you are logged in you can access your profile page and the possiblity to log-out as seen below.
 
+<img width="700" alt="Auth0 profile" src="https://user-images.githubusercontent.com/33750291/144405393-ea6a42d7-4e03-44e9-9c01-1e61645ae8ae.png"> 
 
 ### MyDrugs ProductService
 
