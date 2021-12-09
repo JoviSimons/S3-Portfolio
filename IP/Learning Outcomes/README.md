@@ -128,15 +128,12 @@ Sources:
 Below you can see the script that runs by default on every push and tests. So with every little change in the code that I push it will be tested to make sure nothing breaks when adding new features.
 
 ```yaml
-image: maven:3.8.3-jdk-11
-
-pipelines:
-  default:
-    - parallel:
-        - step:
-            name: Build and Test
-            script:
-              - mvn test
+    - step: &build-test
+        name: Build and test
+        caches:
+          - maven
+        script:
+          - mvn -B verify
 ```
 
 Below is the result of the yaml. You can see that 22 tests passed! Ready for pull request.
@@ -150,6 +147,14 @@ Sources:
 |BitBucket|SonarCloud|
 |-|-|
 |<img width="858" alt="" src="https://user-images.githubusercontent.com/33750291/143471014-8e3e3069-3ec8-4857-9ec1-449c7412026b.png">|<img width="1153" alt="Schermafbeelding 2021-11-25 om 16 47 25" src="https://user-images.githubusercontent.com/33750291/143471023-aaa6b5b9-ef8a-4852-8bb0-8c7d3d525cc1.png">|
+
+```yaml
+  steps:
+    - step: &build-test-sonarcloud
+        name: Build, test and analyze on SonarCloud
+        script:
+          - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+```
 
 
 ### 6. Merge checks
@@ -174,10 +179,26 @@ Below you can see my first yaml file that uses sonarcloud too check the quality 
 The pictures below shows a yaml file that builds, tests and deploys my ProductService.
 
 ```yaml
-branches:
-    master:
-      - step:
-          name: Build and Test
+image: maven:3.8.3-jdk-11
+clone:
+  depth: full    # SonarCloud scanner needs the full history to assign issues properly
+  
+  definitions:
+  caches:
+    sonar: ~/.sonar/cache  # Caching SonarCloud artifacts will speed up your build
+  steps:
+    - step: &build-test-sonarcloud
+        name: Build, test and analyze on SonarCloud
+        script:
+          - mvn -B org.jacoco:jacoco-maven-plugin:prepare-agent verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+    - step: &build-test
+        name: Build and test
+        caches:
+          - maven
+        script:
+          - mvn -B verify
+    - step: &build-test-createTar
+          name: build, test and create Tar
           script:
             - mvn clean install
             - IMAGE_NAME=product-service-docker
@@ -189,7 +210,7 @@ branches:
             - docker
           artifacts:
             - "*.tar"
-      - step:
+    - step: &deploy
           name: Deploy to Production
           deployment: Production
           script:
@@ -202,6 +223,19 @@ branches:
             - docker push "${IMAGE}:latest"
           services:
             - docker
+
+
+pipelines:
+  default:
+  - step: *build-test
+  branches:
+    master:
+      - step: *build-test-createTar
+      - step: *deploy
+    development: 
+          - step: *build-test-sonarcloud
+    pull-requests:
+      - step: *build-test-sonarcloud
 ```
 
 | Bitbucket | Dockerhub|
@@ -249,10 +283,6 @@ I Use Jira for my KanBan board and Bitbucket as my online SourceControl. The Rea
 | <img width="1211" alt="Jira board" src="https://user-images.githubusercontent.com/33750291/143300222-1744b2c4-ab27-4af5-8287-cf96eea44503.png"> | <img width="1377" alt="Bitbucket board" src="https://user-images.githubusercontent.com/33750291/143300214-2c2a2062-a4e8-44d3-ac16-aad1ab095a0c.png"> |
 
 As seen in the pictures above all the issues made in Jira(left picture) or Bitbucket(right picture) are shared with each other.
-
-
-
-![image](https://user-images.githubusercontent.com/33750291/143448146-a330701b-0e09-4478-b130-1c5ad7d017d5.png)
 
 In Jira when clicked on a user story, bug, feature etc. You can see the the branch it's on if it has a branch attached to it, the pull request if made one and the pipeline results linked to it. As seen in the picture below.
 
